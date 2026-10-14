@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .team-blue h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .team-red h2 {
+            color: #dc3545;
+            margin-top: 0;
+        }
+        .balance {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            width: 85%;
+            font-weight: bold;
+        }
+        .btn-blue {
+            background-color: #007bff;
+        }
+        .btn-blue:hover {
+            background-color: #0056b3;
+        }
+        .btn-red {
+            background-color: #dc3545;
+        }
+        .btn-red:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="team-card team-blue">
+            <h2>Blue Titans</h2>
+            <div class="balance">₹<span id="blue-balance">1000</span></div>
+            <input type="number" id="blue-input" placeholder="പർച്ചേസ് തുക നൽകുക">
+            <button class="btn-blue" onclick="deductBlue()">കുറയ്ക്കുക</button>
+        </div>
+
+        <div class="team-card team-red">
+            <h2>Red Warriors</h2>
+            <div class="balance">₹<span id="red-balance">1000</span></div>
+            <input type="number" id="red-input" placeholder="പർച്ചേസ് തുക നൽകുക">
+            <button class="btn-red" onclick="deductRed()">കുറയ്ക്കുക</button>
+        </div>
+    </div>
+
+    <script>
+        let blueBalance = 1000;
+        let redBalance = 1000;
+
+        function deductBlue() {
+            const input = document.getElementById('blue-input').value;
+            const amount = parseInt(input);
+            
+            if (!isNaN(amount) && amount > 0) {
+                if (amount <= blueBalance) {
+                    blueBalance -= amount;
+                    document.getElementById('blue-balance').innerText = blueBalance;
+                    document.getElementById('blue-input').value = '';
+                } else {
+                    alert("ബാലൻസ് തികയുന്നില്ല!");
+                }
+            } else {
+                alert("ശരിയായ തുക നൽകുക");
+            }
+        }
+
+        function deductRed() {
+            const input = document.getElementById('red-input').value;
+            const amount = parseInt(input);
+            
+            if (!isNaN(amount) && amount > 0) {
+                if (amount <= redBalance) {
+                    redBalance -= amount;
+                    document.getElementById('red-balance').innerText = redBalance;
+                    document.getElementById('red-input').value = '';
+                } else {
+                    alert("ബാലൻസ് തികയുന്നില്ല!");
+                }
+            } else {
+                alert("ശരിയായ തുക നൽകുക");
+            }
+        }
+    </script>
+
+</body>
+</html>
